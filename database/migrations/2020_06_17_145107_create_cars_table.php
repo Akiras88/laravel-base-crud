@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNameToStudentsTable extends Migration
+class CreateCarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AddNameToStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->string('name');
+        Schema::create('cars', function (Blueprint $table) {
+            $table->id();
+            $table->string('car');
+            $table->string('model');
+            $table->string('fuel');
+            $table->integer('year');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +30,6 @@ class AddNameToStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('name');
-        });
+        Schema::dropIfExists('cars');
     }
 }
-

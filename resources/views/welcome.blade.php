@@ -1,24 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <h1>Eloquent ORM</h1>
-    </header>
+@extends('layouts.main')
 
-    <main>
-        <h2>Students list</h2>
-        @foreach($students as $student)
-            <div class="student">
-                <h4>{{ $student->name }}</h4>
-                <p>{{ $student->description }}</p>
-            </div>
-        @endforeach
-    </main>
-</body>
-</html>
+@section('main-content')
+    <h1 class="mb-4">Homepage</h1>
+
+    <section class="cars">
+        <h2 class="text-primary">Car list</h2>
+    </section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Car</th>
+                <th>Model</th>
+                <th>Fuel</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($cars as $car)
+                <tr>
+                    <td>{{ $car->car }}</td>
+                    <td>{{ $car->model }}</td>
+                    <td>{{ $car->fuel }}</td>
+                    <td>{{ $car->year }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
