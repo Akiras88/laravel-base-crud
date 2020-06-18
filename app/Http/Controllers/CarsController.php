@@ -39,24 +39,22 @@ class CarsController extends Controller
         $data = $request->all();
 
         //validation
-        $request->validate([
-            'car' => 'required',
-            'model' => 'required',
-            'fuel' => 'required',
-            'year' => 'required'
-        ]);
+        $request->validate($this->validationRules());
+
         // save data
         $car = new Car();
-        $car->car = $data['car'];
-        $car->model = $data['model'];
-        $car->fuel = $data['fuel'];
-        $car->year = $data['year'];
+        //$car->car = $data['car'];
+        //$car->model = $data['model'];
+        //$car->fuel = $data['fuel'];
+        //$car->year = $data['year'];
+        $car->fill($data);
+
         $saved = $car->save();
         
         // redirect to show route 
         if($saved) {
             $newCar = Car::find($car->id);
-            return redirect()->route('cars.show', $newCar);
+            return redirect()->route('cars.show', $newCar->id);
         }
 
     }
@@ -78,9 +76,9 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return  view('cars.edit', compact('car'));
     }
 
     /**
@@ -90,9 +88,21 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $data = $request->all();
+
+        // validation
+        $request->validate($this->validationRules());
+
+        // update data in DB
+        $update = $car->update($data);
+        //dd($update);
+
+        // redirect
+        if($update) {
+            return redirect()->route('cars.show', $car->id);
+        }
     }
 
     /**
@@ -101,8 +111,31 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
+    {   
+        // ref entites to eliminate
+        $ref = $car->car;
+        
+
+        //delete
+        $deleted = $car->delete();
+
+        // redirect with session data 
+        if ($deleted) {
+            return redirect()->route('cars.index')->with('deleted', $ref);
+        };
+    }
+
+    /**
+     * Define validation rules
+     */
+    private function validationRules() 
     {
-        //
+        return [
+            'car' => 'required',
+            'model' => 'required',
+            'fuel' => 'required',
+            'year' => 'required'
+        ];
     }
 }

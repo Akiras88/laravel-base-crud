@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('main-content')
+
+    @if (session('deleted'))
+        <div class="alert alert-success">
+            {{ session('deleted') }} Successfully delete
+        </div>
+    @endif
+
     <h1 class="mb-4">Cars</h1>
 
     <section class="cars">
@@ -24,10 +31,23 @@
                     <td>{{$car->car}}</td>
                     <td>{{$car->model}}</td>
                     <td>
-                        <a class="btn btn-success" href="{{ route('cars.show', $car->id) }}">Show</a>
+                        <a class="btn btn-success" href="{{ route('cars.show', $car->id) }}">
+                            Show
+                        </a>
                     </td>
-                    <td>Update</td>
-                    <td>Delete</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('cars.edit', $car->id) }}">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ route('cars.destroy', $car->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

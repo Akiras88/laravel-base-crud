@@ -17,20 +17,21 @@
 
         @csrf
         @method('POST')
+        
         <div class="formgroup">
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" value="{{ old('car') }}"
             name="car" placeholder="Car brend">
         </div>
         <div class="formgroup">
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" value="{{ old('model') }}"
             name="model" placeholder="Car model">
         </div>
         <div class="formgroup">
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" value="{{ old('fuel') }}"
             name="fuel" placeholder="fuel type">
         </div>
         <div class="formgroup">
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" value="{{ old('year') }}"
             name="year" placeholder="year">
         </div>
         <input class="btn btn-primary"type="submit" value="Create">
