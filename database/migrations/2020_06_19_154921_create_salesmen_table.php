@@ -16,9 +16,9 @@ class CreateSalesmenTable extends Migration
         Schema::create('salesmen', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('age');
-            $table->char('description');
-            $table->float('salary', 4, 1);
+            $table->string('gender');
+            $table->longText('descrption');
+            $table->bigInteger('iban');
             $table->timestamps();
         });
     }

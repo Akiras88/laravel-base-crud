@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Salesman;
+use App\Garage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call([
+            SalesmenTableSeeder::class,
+            GaragesTableSeeder::class
+        ]);
     }
 }
