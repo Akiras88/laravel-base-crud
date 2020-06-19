@@ -116,6 +116,11 @@ class CarsController extends Controller
         // ref entites to eliminate
         $ref = $car->car;
         
+        // $ref = $car [
+        //     'car', 
+        //     'model'
+        // ];
+        
 
         //delete
         $deleted = $car->delete();
