@@ -21,6 +21,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cars.create') }}">Add car</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('salesmen.index') }}">Salesmen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('garages.index') }}">Garage</a>
+                </li>
             </ul>
         </nav>
     </header>

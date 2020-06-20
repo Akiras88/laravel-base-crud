@@ -17,3 +17,7 @@ Route::get('/', 'homeController@index')->name('home');
 
 // Cars
 Route::resource('cars', 'CarsController');
+// Salesmen
+Route::resource('salesmen', 'SalesmenController');
+//Garages
+Route::resource('garages', 'GaragesController');
